@@ -1,0 +1,251 @@
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommender System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+
+<style>
+    .text-white{
+        color:white;
+    }
+    .card:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+</style>
+<body style="background-color:black">
+  
+    <nav class="navbar navbar-expand-lg" style="background-color: #00a65a">
+      <div class="container-fluid d-flex flex-row ms-3" >
+
+        <p class="navbar-brand text-dark"> My Book Recommender</p>
+
+        <ul class ="navbar-nav d-flex flex-row  ms-3" style="margin-left:0px">   
+            <li class="nav-item">  <a class="nav-link text-dark" href="/"> Home</a>   </li>
+            <li class="nav-item"><a class="nav-link text-dark" href="recommend">Recommend</a> </li>
+            
+            <li class="nav-item"><a class="nav-link text-dark" href="">Contact </a> </li>
+           {% if current_user.is_authenticated %}
+              <span class="text-white me-3">Hello, {{ current_user.email.split('@')[0] }}</span>
+              <a href="/logout" class="btn btn-dark">Logout</a>
+           
+            {% else %}
+               <li class="nav-item"> <a class="nav-link text-dark" href="/login">Login</a></li>
+            <li class="nav-item"> <a class="nav-link text-dark" href="/signup">Signup</a></li>
+            {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    
+    <div class ="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-white" style="font-size: 50px;">Top Popular Books</h1>
+            </div>
+
+         {% for i in range(book_name|length) %}
+
+            <div class="col-md-3" style="margin-top:50px">
+                <div class="card h-100 shadow-lg book-card">
+                    <div class="card-body">
+                        <img class="card-img-top" src="{{ image[i]}}" style="height:400px; object-fit:cover;">
+                        <p class="text-black">{{ book_name[i]}} </p>
+                        <h4 class="text-black"> {{ author[i]}}</h4>
+                        <h4 class="text-black">Votes - {{ votes[i]}} </h4>
+                        <h4 class="text-black">Rating - {{ rating[i] |round(1)}} </h4>
+
+                    </div>
+                </div>
+            </div>
+
+         {% endfor %}
+
+        
+        </div>
+    </div>
+      
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Book Recommender</title>
+
+<!-- Bootstrap -->
+
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+
+<!-- Custom CSS -->
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<!-- 🔥 NAVBAR -->
+
+<nav class="navbar navbar-expand-lg navbar-dark px-4 py-3">
+
+    <div class="container-fluid">
+
+        <a class="navbar-brand fw-bold"
+           href="/">
+           📚 My Book Recommender
+        </a>
+
+        <div class="ms-auto d-flex align-items-center gap-3">
+
+            <a class="nav-link"
+               href="/">
+                Home
+            </a>
+
+            <a class="nav-link"
+               href="/recommend">
+                Recommend
+            </a>
+
+            <a class="nav-link"
+               href="/moods">
+                Moods
+            </a>
+            <a class="nav-link" href="/chatbot">
+                      Assistant
+            </a>
+
+            {% if current_user.is_authenticated %}
+
+                <span class="text-white">
+                    Hello,
+                    {{ current_user.email.split('@')[0] }}
+                </span>
+
+                <a href="/logout"
+                   class="btn btn-custom">
+                    Logout
+                </a>
+
+            {% else %}
+
+                <a href="/login"
+                   class="btn btn-custom">
+                    Login
+                </a>
+
+                <a href="/signup"
+                   class="btn btn-custom">
+                    Signup
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- 🔥 MAIN CONTENT -->
+
+<div class="container py-5">
+
+    <!-- TITLE -->
+
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold display-4">
+            Top Popular Books
+        </h1>
+
+        <p class="text-muted-custom">
+            Discover trending books loved by readers
+        </p>
+
+    </div>
+
+
+    <!-- BOOKS GRID -->
+
+    <div class="row g-4 pb-5">
+
+        {% for i in range(book_name|length) %}
+
+        <div class="col-lg-3 col-md-4 col-sm-6 p-3">
+
+            <!-- GLASS CARD -->
+
+            <div class="glass-card h-100">
+
+                <!-- BOOK IMAGE -->
+
+                <img src="{{ image[i] }}" 
+                     class="book-img">
+
+                <!-- CARD CONTENT -->
+
+                <div class="card-body">
+
+                    <h5 class="book-title">
+
+                        {{ book_name[i] }}
+
+                    </h5>
+
+                    <p class="book-author">
+
+                        {{ author[i] }}
+
+                    </p>
+
+                    <div class="book-rating">
+
+                        <p class="mb-2">
+
+                            ⭐ {{ rating[i] | round(1) }}/5
+
+                        </p>
+
+                        <p>
+
+                            📊 {{ votes[i] }} votes
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+```
+
+</body>
+
+</html>
+
