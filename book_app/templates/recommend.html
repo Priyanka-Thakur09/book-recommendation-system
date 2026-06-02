@@ -1,82 +1,3 @@
-<!--
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Book Recommender System</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-
-<style>
-    .text-white{
-        color:white;
-    }
-</style>
-<body style="background-color:black">
-  
-    <nav class="navbar navbar-expand-lg" style="background-color: #00a65a">
-      <div class="container-fluid d-flex flex-row ms-3" >
-
-        <p class="navbar-brand text-dark"> My Book Recommender</p>
-
-        <ul class ="navbar-nav ">   
-            <li>  <a  href="/"> Home</a>   </li>
-            <li ><a  href="recommend">Recommend</a> </li>
-            <li ><a href="">Contact </a> </li>
-        </ul>
-      </div>
-    </nav>
-
-    
-    <div class ="container">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="text-white"  style="font-size: 50px; text-align: center; margin-top:30px; margin-bottom:30px;" >Get Reccommendations</h1>
-                <form action="/recommend_books" method="post" >
-                    
-                    <input type="text" name="user_input"  class="form-control mb-4" placeholder="Enter a book name..."  list="books" required>
-
-                    <datalist id="books">
-
-                         {% for book in book_list %}
-
-                               <option value="{{ book }}">
-                
-                         {% endfor %}
-
-                    </datalist>
-                    <input type="submit" class="btn btn-custom">
-
-                </form>
-            </div>
-
-            {% if data %}
-              {% for i in data %}
-                <div class="col-md-3" style="margin-top:50px">
-                  <div class="card h-100 shadow-lg book-card">
-                      <div class="card-body">
-                        <img class="card-img-top" src="{{i[2]}}" style="height:400px; object-fit:cover;">
-                        <p class="text-black">{{ i[0] }} </p>
-                        <h4 class="text-black"> {{ i[1] }}</h4>
-                        
-                      </div>
-                    </div>
-                </div>
-              {% endfor %}
-            {% endif %}
-
-         
-
-        
-        </div>
-    </div>
-      
-</body>
-</html>
--->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,9 +14,7 @@
 
 <body>
 
-    <!-- =========================
-         NAVBAR
-    ========================== -->
+    <!--  NAVBAR -->
 
     <nav class="navbar navbar-expand-lg">
 
@@ -142,9 +61,7 @@
 
     </nav>
 
-    <!-- =========================
-         PAGE HEADING
-    ========================== -->
+    <!--  PAGE HEADING -->
 
     <div class="container">
 
@@ -156,9 +73,7 @@
             Find books similar to your favorites
         </p>
 
-        <!-- =========================
-             SEARCH FORM
-        ========================== -->
+        <!-- SEARCH FORM -->
 
         <form action="/recommend_books" method="post">
 
@@ -197,9 +112,7 @@
 
         {% endif %}
 
-        <!-- =========================
-             RECOMMENDED BOOKS
-        ========================== -->
+        <!--RECOMMENDED BOOKS -->
 
         <div class="row g-4">
 
@@ -211,10 +124,7 @@
 
                         <div class="glass-card">
 
-                            <img
-                                src="{{ i[2] }}"
-                                class="book-img"
-                            >
+                            <img src="{{ i[2] }}"class="book-img">
 
                             <div class="card-body">
 

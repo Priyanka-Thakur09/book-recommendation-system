@@ -77,47 +77,6 @@ def mood_result(mood_name):
         mood=mood_name.capitalize()
     )
 
-'''
-@main.route('/chatbot', methods=['GET', 'POST'])
-@login_required
-def chatbot():
-
-    ai_response = None
-
-    error = None
-
-    user_message = None
-
-    
-
-    if request.method == 'POST':
-
-        user_message = request.form.get('message')
-        print("USER MESSAGE:", user_message)
-
-        try:
-
-            ai_response = ask_ai(user_message)
-            print("AI RESPONSE:", ai_response)
-
-        except Exception as e:
-
-            error = str(e)
-            print("ERROR:", error)
-
-    return render_template(
-
-        'chatbot.html',
-
-        ai_response=ai_response,
-
-        user_message=user_message,
-
-        error=error,
-
-        books=None
-    )
-'''
 @main.route('/chatbot')
 @login_required
 def chatbot():

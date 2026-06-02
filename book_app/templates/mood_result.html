@@ -39,6 +39,26 @@
                     <a class="nav-link" href="/moods">Moods</a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="/chatbot">Assistant</a>
+                </li>
+                 {% if current_user.is_authenticated %}
+
+                    <li class="nav-item ms-3">
+                        <span class="text-white">
+                            Hello,
+                            {{ current_user.email.split('@')[0] }}
+                        </span>
+                    </li>
+
+                    <li class="nav-item ms-3">
+                        <a href="/logout" class="btn btn-custom">
+                            Logout
+                        </a>
+                    </li>
+
+                {% endif %}
+          
             </ul>
 
         </div>
@@ -87,7 +107,8 @@
 
                         <p class="mt-3 text-light">
                             {{ book.description }}
-                        </p>
+                        </p> 
+                       
 
                     </div>
 

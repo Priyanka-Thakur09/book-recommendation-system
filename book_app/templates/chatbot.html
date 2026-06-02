@@ -51,9 +51,7 @@
                 Moods
             </a>
 
-            <a class="nav-link active" href="/chatbot">
-                Assistant
-            </a>
+           
 
             {% if current_user.is_authenticated %}
 
@@ -121,67 +119,6 @@
     </div>
 
 </div>
-
-    <!-- BOOK RESULTS -->
-
-    {% if books %}
-
-    <div class="row g-4 mt-4">
-
-        {% for book in books %}
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-
-            <div class="glass-card h-100">
-
-                <img src="{{ book.image }}"
-                     class="book-img">
-
-                <div class="card-body">
-
-                    <h5 class="book-title">
-
-                        {{ book.title }}
-
-                    </h5>
-
-                    <p class="book-author">
-
-                        {{ book.author }}
-
-                    </p>
-
-                    <p class="text-muted-custom">
-
-                        {{ book.description[:150] }}...
-
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        {% endfor %}
-
-    </div>
-
-    {% endif %}
-
-    <!-- ERROR -->
-
-    {% if error %}
-
-    <div class="error-box mt-5">
-
-        {{ error }}
-
-    </div>
-
-    {% endif %}
-
-
 
 <script>
 

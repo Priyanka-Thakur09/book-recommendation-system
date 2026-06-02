@@ -88,7 +88,8 @@ def fetch_books_by_mood(mood):
                 "description": volume.get(
                     'description',
                     'No description available'
-                )[:120]
+                )[:300],
+                
             })
 
        return books
