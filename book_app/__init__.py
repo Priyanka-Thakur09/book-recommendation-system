@@ -1,11 +1,12 @@
 from flask import Flask
 from .dbmodels import db
 from flask_login import LoginManager
+import os
 
 def create_app():
     app = Flask(__name__, template_folder='templates', static_folder='static')
     
-    app.config['SECRET_KEY'] = 'secret123'
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 
     db.init_app(app)
