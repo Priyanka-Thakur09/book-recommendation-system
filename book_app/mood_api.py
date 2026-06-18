@@ -1,7 +1,6 @@
 import requests
 import random
 import os
-
 API_KEY = os.getenv("GOOGLE_BOOKS_API_KEY")
 
 mood_queries = {
@@ -48,35 +47,24 @@ mood_queries = {
         "action adventure fiction"
     ]
 }
-
 def fetch_books_by_mood(mood):
    try:
        query = random.choice(mood_queries[mood])
-  
        if not query:
              return []
-
        url = f"https://www.googleapis.com/books/v1/volumes?q={query}&key={API_KEY}"
 
        response = requests.get(url, timeout=10)
-
        data = response.json()
-
        books = []
-
        if 'items' not in data:
             return []
 
        for item in data['items'][:12]:
-
             volume = item.get('volumeInfo', {})
-
             books.append({
-
                 "title": volume.get('title', 'Unknown'),
-
                 "author": volume.get('authors', ['Unknown'])[0],
-
                 "image": volume.get(
                     'imageLinks',
                     {}
@@ -84,18 +72,13 @@ def fetch_books_by_mood(mood):
                     'thumbnail',
                     ''
                 ),
-
                 "description": volume.get(
                     'description',
                     'No description available'
                 )[:300],
                 
             })
-
        return books
-
    except Exception as e:
-
         print("Mood API Error:", e)
-
         return []
